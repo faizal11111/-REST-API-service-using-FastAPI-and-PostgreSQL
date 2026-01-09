@@ -57,7 +57,7 @@ created_at       → When saved
 updated_at       → When modified
 Why unique external_id? Prevents duplicate saves of same external post.
 
-🧪 Tests (8/8 Pass)
+🧪 Tests
 bash
 pytest -v
 What they test:
@@ -74,24 +74,13 @@ What they test:
 
 Uses SQLite for tests (isolated from prod PostgreSQL).
 
-📂 Project Structure
-text
-app/
-├── main.py          # FastAPI app + router
-├── database.py      # SQLAlchemy engine/session
-├── models.py        # Post table definition
-├── schemas.py       # Pydantic request/response
-├── crud.py          # DB create/read/update/delete
-├── api.py           # 4 endpoints
-├── external_client.py # HTTPX to JSONPlaceholder
-└── deps.py          # get_db() dependency
-tests/               # 8 pytest tests
 🚨 Error Handling
 Scenario	Status Code	Response
 External API down	502	{"detail": "External API error"}
 Post not found	404	{"detail": "Post not found"}
 Bad JSON	422	Pydantic validation errors
 DB down	500	FastAPI default
+
 🎉 Results
 ✅ 4 endpoints working
 ✅ PostgreSQL + external API bridge
